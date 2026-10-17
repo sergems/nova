@@ -1,0 +1,431 @@
+[
+    {
+        "message": "Test message",
+        "userId": "test-user-123",
+        "timestamp": "2025-09-13T20:53:16.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:53:16"
+    },
+    {
+        "message": "Security test message",
+        "userId": "security-test-456",
+        "timestamp": "2025-09-13T20:53:52.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:53:52"
+    },
+    {
+        "message": "<script>alert(\"XSS Test\")<\/script>",
+        "userId": "xss-test-789",
+        "timestamp": "2025-09-13T20:54:04.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:04"
+    },
+    {
+        "message": "Rate limit test 1",
+        "userId": "rate-test-1",
+        "timestamp": "2025-09-13T20:54:16.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:17"
+    },
+    {
+        "message": "Rate limit test 2",
+        "userId": "rate-test-2",
+        "timestamp": "2025-09-13T20:54:17.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:17"
+    },
+    {
+        "message": "Rate limit test 3",
+        "userId": "rate-test-3",
+        "timestamp": "2025-09-13T20:54:17.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:17"
+    },
+    {
+        "message": "Rate limit test 4",
+        "userId": "rate-test-4",
+        "timestamp": "2025-09-13T20:54:17.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:17"
+    },
+    {
+        "message": "Rate limit test 5",
+        "userId": "rate-test-5",
+        "timestamp": "2025-09-13T20:54:17.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:17"
+    },
+    {
+        "message": "Rate limit test 6",
+        "userId": "rate-test-6",
+        "timestamp": "2025-09-13T20:54:17.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:17"
+    },
+    {
+        "message": "Rate limit test 7",
+        "userId": "rate-test-7",
+        "timestamp": "2025-09-13T20:54:17.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:17"
+    },
+    {
+        "message": "Rate limit test 8",
+        "userId": "rate-test-8",
+        "timestamp": "2025-09-13T20:54:17.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:17"
+    },
+    {
+        "message": "Rate limit test 9",
+        "userId": "rate-test-9",
+        "timestamp": "2025-09-13T20:54:17.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:17"
+    },
+    {
+        "message": "Rate limit test 10",
+        "userId": "rate-test-10",
+        "timestamp": "2025-09-13T20:54:17.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:17"
+    },
+    {
+        "message": "Rate limit test 11",
+        "userId": "rate-test-11",
+        "timestamp": "2025-09-13T20:54:17.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:17"
+    },
+    {
+        "message": "Rate limit test 12",
+        "userId": "rate-test-12",
+        "timestamp": "2025-09-13T20:54:17.000Z",
+        "ip_address": "127.0.0.1",
+        "user_agent": "curl\/8.14.1",
+        "received_at": "2025-09-13 20:54:17"
+    },
+    {
+        "message": "hello there",
+        "userId": "user_dkzd5iqfp",
+        "timestamp": "2025-09-13T21:03:29.284Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-13T21:03:29.284Z"
+    },
+    {
+        "message": "hello nova",
+        "userId": "user_ysudtd0th",
+        "clientId": "client_y3mw7x0b6",
+        "conversationId": "client_y3mw7x0b6",
+        "isFromAdmin": false,
+        "adminId": null,
+        "timestamp": "2025-09-13T21:20:27.420Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-13T21:20:27.421Z"
+    },
+    {
+        "message": "hello nova",
+        "userId": "user_mm457kvwa",
+        "clientId": "client_o3h5yl3ye",
+        "conversationId": "client_o3h5yl3ye",
+        "isFromAdmin": false,
+        "adminId": null,
+        "timestamp": "2025-09-13T21:30:29.042Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-13T21:30:29.043Z"
+    },
+    {
+        "message": "hello there",
+        "userId": "admin-client_ff773w0th",
+        "clientId": "client_o3h5yl3ye",
+        "conversationId": "client_o3h5yl3ye",
+        "isFromAdmin": true,
+        "adminId": "client_ff773w0th",
+        "timestamp": "2025-09-13T21:30:49.873Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-13T21:30:49.873Z"
+    },
+    {
+        "message": "i need help",
+        "userId": "user_mm457kvwa",
+        "clientId": "client_o3h5yl3ye",
+        "conversationId": "client_o3h5yl3ye",
+        "isFromAdmin": false,
+        "adminId": null,
+        "timestamp": "2025-09-13T21:31:04.185Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-13T21:31:04.186Z"
+    },
+    {
+        "message": "hello",
+        "userId": "user_5u9derg82",
+        "userName": "Alex",
+        "clientId": "client_rhge4x54u",
+        "conversationId": "client_rhge4x54u",
+        "isFromAdmin": false,
+        "adminId": null,
+        "timestamp": "2025-09-13T21:51:35.923Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-13T21:51:35.924Z"
+    },
+    {
+        "message": "hello",
+        "userId": "user_5u9derg82",
+        "userName": "Alex",
+        "clientId": "client_wk3b7bdat",
+        "conversationId": "client_wk3b7bdat",
+        "isFromAdmin": false,
+        "adminId": null,
+        "timestamp": "2025-09-13T22:06:32.505Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-13T22:06:32.505Z"
+    },
+    {
+        "message": "yes alex",
+        "userId": "admin-client_l2qs33lad",
+        "userName": "Anonymous",
+        "clientId": "client_wk3b7bdat",
+        "conversationId": "client_wk3b7bdat",
+        "isFromAdmin": true,
+        "adminId": "client_l2qs33lad",
+        "timestamp": "2025-09-13T22:06:44.769Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-13T22:06:44.769Z"
+    },
+    {
+        "message": "hello, how can i help you today",
+        "userId": "admin-client_acle2q2wt",
+        "userName": "Alex",
+        "clientId": "client_imzvd5qh5",
+        "conversationId": "client_imzvd5qh5",
+        "isFromAdmin": true,
+        "adminId": "client_acle2q2wt",
+        "timestamp": "2025-09-16T19:18:32.518Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-16T19:18:32.522Z"
+    },
+    {
+        "message": "i need help",
+        "userId": "user_psrmlmq0a",
+        "userName": "Alex",
+        "clientId": "client_imzvd5qh5",
+        "conversationId": "client_imzvd5qh5",
+        "isFromAdmin": false,
+        "adminId": null,
+        "timestamp": "2025-09-16T19:18:50.387Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-16T19:18:50.387Z"
+    },
+    {
+        "message": "Hi",
+        "userId": "user_08ulq5ol1",
+        "userName": "Amy",
+        "clientId": "client_tpmrectqq",
+        "conversationId": "client_tpmrectqq",
+        "isFromAdmin": false,
+        "adminId": null,
+        "timestamp": "2025-09-16T19:19:40.611Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-16T19:19:40.612Z"
+    },
+    {
+        "message": "I need help",
+        "userId": "user_08ulq5ol1",
+        "userName": "Amy",
+        "clientId": "client_tpmrectqq",
+        "conversationId": "client_tpmrectqq",
+        "isFromAdmin": false,
+        "adminId": null,
+        "timestamp": "2025-09-16T19:19:48.820Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-16T19:19:48.821Z"
+    },
+    {
+        "message": "he;",
+        "userId": "admin-client_acle2q2wt",
+        "userName": "Amy",
+        "clientId": "client_tpmrectqq",
+        "conversationId": "client_tpmrectqq",
+        "isFromAdmin": true,
+        "adminId": "client_acle2q2wt",
+        "timestamp": "2025-09-16T19:19:56.146Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-16T19:19:56.146Z"
+    },
+    {
+        "message": "what tyoe of jdshasugias",
+        "userId": "admin-client_acle2q2wt",
+        "userName": "Amy",
+        "clientId": "client_tpmrectqq",
+        "conversationId": "client_tpmrectqq",
+        "isFromAdmin": true,
+        "adminId": "client_acle2q2wt",
+        "timestamp": "2025-09-16T19:20:03.823Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-16T19:20:03.823Z"
+    },
+    {
+        "message": "Im broke",
+        "userId": "user_08ulq5ol1",
+        "userName": "Amy",
+        "clientId": "client_tpmrectqq",
+        "conversationId": "client_tpmrectqq",
+        "isFromAdmin": false,
+        "adminId": null,
+        "timestamp": "2025-09-16T19:20:09.806Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-16T19:20:09.807Z"
+    },
+    {
+        "message": "Hi",
+        "userId": "user_08ulq5ol1",
+        "userName": "Amy",
+        "clientId": "client_aaaskwty3",
+        "conversationId": "client_aaaskwty3",
+        "isFromAdmin": false,
+        "adminId": null,
+        "timestamp": "2025-09-16T19:20:41.690Z",
+        "ip_address": "websocket",
+        "user_agent": "websocket-client",
+        "received_at": "2025-09-16T19:20:41.691Z"
+    },
+    {
+        "type": "chat_message",
+        "clientId": "user_2rr9eswcg",
+        "userId": "user_2rr9eswcg",
+        "userName": "Andile",
+        "message": "I&#039;m under debt and my status says  prescription interrupted, I am unemployed what should I do",
+        "timestamp": "2025-11-20T01:15:23+00:00",
+        "isFromAdmin": false,
+        "targetClientId": "",
+        "id": "msg_691e6babca62b5.36840316"
+    },
+    {
+        "type": "chat_message",
+        "clientId": "user_2rr9eswcg",
+        "userId": "user_2rr9eswcg",
+        "userName": "Andile",
+        "message": "Can you assist me?",
+        "timestamp": "2025-11-20T01:16:11+00:00",
+        "isFromAdmin": false,
+        "targetClientId": "",
+        "id": "msg_691e6bdb8c2855.21871551"
+    },
+    {
+        "type": "chat_message",
+        "clientId": "user_2rr9eswcg",
+        "userId": "user_2rr9eswcg",
+        "userName": "Andile",
+        "message": "I&#039;m under debt and my status says  prescription interrupted, I am unemployed what should I do",
+        "timestamp": "2025-11-20T01:18:04+00:00",
+        "isFromAdmin": false,
+        "targetClientId": "",
+        "id": "msg_691e6c4cb24477.66660915"
+    },
+    {
+        "type": "chat_message",
+        "clientId": "user_2rr9eswcg",
+        "userId": "user_2rr9eswcg",
+        "userName": "Andile",
+        "message": "I&#039;m in debt, and my status says prescription interrupted. I am unemployed. What should I do?",
+        "timestamp": "2025-11-20T01:18:47+00:00",
+        "isFromAdmin": false,
+        "targetClientId": "",
+        "id": "msg_691e6c77692db5.11561429"
+    },
+    {
+        "type": "chat_message",
+        "clientId": "user_2rr9eswcg",
+        "userId": "user_2rr9eswcg",
+        "userName": "Andile",
+        "message": "Hi",
+        "timestamp": "2025-11-20T01:24:07+00:00",
+        "isFromAdmin": false,
+        "targetClientId": "",
+        "id": "msg_691e6db739cce0.18405385"
+    },
+    {
+        "type": "chat_message",
+        "clientId": "user_ge8c4tttp",
+        "userId": "user_ge8c4tttp",
+        "userName": "Sipho",
+        "message": "Helo I&#039;m on Debts review",
+        "timestamp": "2025-12-08T08:34:57+00:00",
+        "isFromAdmin": false,
+        "targetClientId": "",
+        "id": "msg_69368db13c64b1.21337887"
+    },
+    {
+        "type": "chat_message",
+        "clientId": "user_ge8c4tttp",
+        "userId": "user_ge8c4tttp",
+        "userName": "Sipho",
+        "message": "Please call me",
+        "timestamp": "2025-12-08T08:35:17+00:00",
+        "isFromAdmin": false,
+        "targetClientId": "",
+        "id": "msg_69368dc50ed5e0.79501221"
+    },
+    {
+        "type": "chat_message",
+        "clientId": "user_dobmaq97g",
+        "userId": "user_dobmaq97g",
+        "userName": "Anneme",
+        "message": "I waa flaggedcby a company when I wanted to join their debt review. Im getting divorced and could not afford to do debt review but the wouldnt cancel it. Now they flagged me. Can you help",
+        "timestamp": "2026-04-09T17:48:09+00:00",
+        "isFromAdmin": false,
+        "targetClientId": "",
+        "id": "msg_69d7e65947c1a1.53108752"
+    },
+    {
+        "type": "chat_message",
+        "clientId": "user_qwow44uao",
+        "userId": "user_qwow44uao",
+        "userName": "Nelly",
+        "message": "Why did you list myname",
+        "timestamp": "2026-09-21T12:39:47+00:00",
+        "isFromAdmin": false,
+        "targetClientId": "",
+        "id": "msg_6ab1259399e6b1.28187812"
+    },
+    {
+        "type": "chat_message",
+        "clientId": "user_44a7ngp06",
+        "userId": "user_44a7ngp06",
+        "userName": "Isacc",
+        "message": "hello",
+        "timestamp": "2026-10-17T10:24:34+00:00",
+        "isFromAdmin": false,
+        "targetClientId": "",
+        "id": "msg_6ad34ce2946369.00935681"
+    }
+]

@@ -1,0 +1,56 @@
+# Robots.txt for Nova Debt Counselling
+# https://www.ndcl.co.za/robots.txt
+
+User-agent: *
+Allow: /
+
+# Allow all major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+User-agent: Twitterbot
+Allow: /
+
+# Disallow admin and sensitive areas
+Disallow: /admin/
+Disallow: /secure_storage/
+Disallow: /tmp/
+Disallow: /*.log$
+Disallow: /*.json$
+Disallow: /server/
+Disallow: /node_modules/
+Disallow: /.git/
+
+# Allow important pages
+Allow: /css/
+Allow: /js/
+Allow: /images/
+Allow: /
+Allow: /services.php
+Allow: /about.php
+Allow: /contact.php
+Allow: /thank-you.php
+
+# Crawl delay (be respectful)
+Crawl-delay: 1
+
+# Sitemap location
+Sitemap: https://www.ndcl.co.za/sitemap.xml

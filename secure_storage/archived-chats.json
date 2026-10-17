@@ -1,0 +1,29 @@
+[
+  {
+    "chatId": "client_xzdv4kwy0",
+    "userName": "Anonymous",
+    "userId": "client_xzdv4kwy0",
+    "messages": [],
+    "lastActivity": "2025-09-13T22:06:00.757Z",
+    "archivedAt": "2025-09-13T22:06:08.176Z",
+    "archivedBy": "client_l2qs33lad"
+  },
+  {
+    "chatId": "client_wk3b7bdat",
+    "userName": "Alex",
+    "userId": "user_5u9derg82",
+    "messages": [],
+    "lastActivity": "2025-09-13T22:06:32.505Z",
+    "archivedAt": "2025-09-13T22:06:49.433Z",
+    "archivedBy": "client_l2qs33lad"
+  },
+  {
+    "chatId": "client_i6ab6m3e7",
+    "userName": "Anonymous",
+    "userId": "client_i6ab6m3e7",
+    "messages": [],
+    "lastActivity": "2025-09-13T22:14:32.555Z",
+    "archivedAt": "2025-09-13T22:14:42.742Z",
+    "archivedBy": "client_1dtvssty6"
+  }
+]
