@@ -30,7 +30,7 @@ function sendResponse($success, $data = null, $message = '') {
 }
 
 try {
-    $secureStorageDir = '../../secure_storage';
+    $secureStorageDir = __DIR__ . '/../../secure_storage';
     $onlineFile = $secureStorageDir . '/online-clients.json';
     $activityFile = $secureStorageDir . '/chat-activity.json';
     

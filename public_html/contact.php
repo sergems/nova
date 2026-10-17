@@ -11,7 +11,7 @@ require_once '../includes/seo.php';
 include '../includes/header.php'; 
 ?>
 
-<main data-page="contact">
+<main id="main-content" data-page="contact">
     <!-- Hero Section -->
     <section class="hero">
         <div class="container text-center">
@@ -94,44 +94,44 @@ include '../includes/header.php';
                     <div id="contact-info-card" style="background-color: rgba(75, 38, 97, 0.05); padding: 2rem; border-radius: var(--border-radius);">
                         <h3 data-testid="contact-info-heading">Contact Information</h3>
                         
-                        <div class="contact-item">
+                        <div class="contact-item contact-item--address">
                             <div class="icon-box">
-                                <i class="fas fa-map-marker-alt" style="color: #e74c3c; font-size: 1rem;"></i>
+                                <svg class="icon icon-map-pin" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#map-pin"></use></svg>
                             </div>
                             <p data-testid="contact-address">417 Anton Lembede, 9th floor.<br>912 Sangro House<br>Durban, Kwazulu Natal<br>4001</p>
                         </div>
                         
-                        <div class="contact-item">
+                        <div class="contact-item contact-item--phone">
                             <div class="icon-box">
-                                <i class="fas fa-phone" style="color: #27ae60; font-size: 1rem;"></i>
+                                <svg class="icon icon-phone" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#phone"></use></svg>
                             </div>
-                            <p data-testid="contact-phone"><a href="tel:+27718022762" style="color: inherit; text-decoration: none;">071 802 2762</a></p>
+                            <p data-testid="contact-phone"><a href="tel:+27310241790">031 0241 790</a><br><a href="tel:+27718022762">071 802 2762</a></p>
                         </div>
                         
-                        <div class="contact-item">
+                        <div class="contact-item contact-item--whatsapp">
                             <div class="icon-box">
-                                <i class="fab fa-whatsapp" style="color: #25D366; font-size: 1rem;"></i>
+                                <svg class="contact-icon-whatsapp" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#social-whatsapp"></use></svg>
                             </div>
-                            <p data-testid="contact-whatsapp"><a href="https://wa.me/27718022762" target="_blank" style="color: inherit; text-decoration: none;">071 802 2762</a></p>
+                            <p data-testid="contact-whatsapp"><a href="https://wa.me/27718022762" target="_blank" rel="noopener noreferrer">071 802 2762</a></p>
                         </div>
                         
-                        <div class="contact-item">
+                        <div class="contact-item contact-item--email">
                             <div class="icon-box">
-                                <i class="fas fa-envelope" style="color: #3498db; font-size: 1rem;"></i>
+                                <svg class="icon icon-mail" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#mail"></use></svg>
                             </div>
-                            <p data-testid="contact-email">admin@ndcl.co.za</p>
+                            <p data-testid="contact-email"><a href="mailto:admin@ndcl.co.za">admin@ndcl.co.za</a></p>
                         </div>
                         
-                        <div class="contact-item">
+                        <div class="contact-item contact-item--website">
                             <div class="icon-box">
-                                <i class="fas fa-globe" style="color: #17a2b8; font-size: 1rem;"></i>
+                                <svg class="icon icon-globe" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#globe"></use></svg>
                             </div>
-                            <p data-testid="contact-website">www.ndcl.co.za</p>
+                            <p data-testid="contact-website"><a href="https://www.ndcl.co.za" target="_blank" rel="noopener noreferrer">www.ndcl.co.za</a></p>
                         </div>
                         
-                        <div class="contact-item">
+                        <div class="contact-item contact-item--hours">
                             <div class="icon-box">
-                                <i class="fas fa-clock" style="color: #f39c12; font-size: 1rem;"></i>
+                                <svg class="icon icon-clock" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#clock"></use></svg>
                             </div>
                             <div>
                                 <h4>Business Hours</h4>
@@ -150,19 +150,19 @@ include '../includes/header.php';
                         <h4 style="margin-bottom: 1rem;">Why Choose NOVA?</h4>
                         <ul style="list-style: none; padding: 0; margin: 0;">
                             <li style="display: flex; align-items: center; margin-bottom: 0.75rem;" data-testid="benefit-0">
-                                <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                                <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                                 Personalized debt solutions
                             </li>
                             <li style="display: flex; align-items: center; margin-bottom: 0.75rem;" data-testid="benefit-1">
-                                <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                                <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                                 Experienced professional team
                             </li>
                             <li style="display: flex; align-items: center; margin-bottom: 0.75rem;" data-testid="benefit-2">
-                                <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                                <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                                 Confidential consultations
                             </li>
                             <li style="display: flex; align-items: center;" data-testid="benefit-3">
-                                <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                                <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                                 Dignity-preserving approach
                             </li>
                         </ul>
@@ -212,7 +212,7 @@ include '../includes/header.php';
                 Every day you wait is another day of unnecessary financial stress. Contact us now and take the first step towards financial freedom.
             </p>
             <p style="font-size: 1.125rem; margin-bottom: 1.5rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                Call Nova Debt Counselling for a Free Consultation on <strong>031 305 0289</strong>
+                Call Nova Debt Counselling for a Free Consultation on <strong>031 0241 790 or 071 802 2762</strong>
             </p>
             <p style="font-size: 1.125rem; color: var(--nova-accent); font-weight: 600;" data-testid="response-time">
                 We respond to all inquiries within 24 hours

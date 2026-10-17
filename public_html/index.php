@@ -3,7 +3,7 @@ require_once '../includes/seo.php';
 include '../includes/header.php'; 
 ?>
 
-<main>
+<main id="main-content">
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
@@ -44,68 +44,68 @@ include '../includes/header.php';
 
             <div class="services-grid">
                 <div class="card" data-testid="service-card-debt-review-cancellation">
-                    <div class="card-icon"><i class="fas fa-clipboard-list" style="font-size: 2rem; color: #3498db;"></i></div>
+                    <div class="card-icon"><svg class="icon icon-clipboard-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#clipboard-check"></use></svg></div>
                     <h3 data-testid="service-title-debt-review-cancellation">Debt Review Cancellation</h3>
                     <p data-testid="service-description-debt-review-cancellation">
                         Professional assistance to cancel your debt review when circumstances change, ensuring a smooth transition back to normal credit standing.
                     </p>
                     <a href="/services.php" class="btn btn-outline" data-testid="button-learn-more-debt-review-cancellation">
-                        Learn More →
+                        Learn More <svg class="icon icon-arrow-right" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-left: .25rem;"><use href="/icons.svg#arrow-right"></use></svg>
                     </a>
                 </div>
 
                 <div class="card" data-testid="service-card-admin-order-cancellation">
-                    <div class="card-icon"><i class="fas fa-file-alt" style="font-size: 2rem; color: #27ae60;"></i></div>
+                    <div class="card-icon"><svg class="icon icon-file-text" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#file-text"></use></svg></div>
                     <h3 data-testid="service-title-admin-order-cancellation">Admin Order Cancellation</h3>
                     <p data-testid="service-description-admin-order-cancellation">
                         Expert guidance through the legal process of cancelling administration orders that may no longer serve your best interests.
                     </p>
                     <a href="/services.php" class="btn btn-outline" data-testid="button-learn-more-admin-order-cancellation">
-                        Learn More →
+                        Learn More <svg class="icon icon-arrow-right" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-left: .25rem;"><use href="/icons.svg#arrow-right"></use></svg>
                     </a>
                 </div>
 
                 <div class="card" data-testid="service-card-prescribed-debt-removal">
-                    <div class="card-icon"><i class="fas fa-broom" style="font-size: 2rem; color: #9b59b6;"></i></div>
+                    <div class="card-icon"><svg class="icon icon-eraser" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#eraser"></use></svg></div>
                     <h3 data-testid="service-title-prescribed-debt-removal">Prescribed Debt Removal</h3>
                     <p data-testid="service-description-prescribed-debt-removal">
                         Legal removal of prescribed debts from your credit record, helping you start fresh with a clean financial slate.
                     </p>
                     <a href="/services.php" class="btn btn-outline" data-testid="button-learn-more-prescribed-debt-removal">
-                        Learn More →
+                        Learn More <svg class="icon icon-arrow-right" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-left: .25rem;"><use href="/icons.svg#arrow-right"></use></svg>
                     </a>
                 </div>
 
                 <div class="card" data-testid="service-card-judgement-removal">
-                    <div class="card-icon"><i class="fas fa-balance-scale" style="font-size: 2rem; color: #f39c12;"></i></div>
+                    <div class="card-icon"><svg class="icon icon-scale" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#scale"></use></svg></div>
                     <h3 data-testid="service-title-judgement-removal">Judgement Removal</h3>
                     <p data-testid="service-description-judgement-removal">
                         Strategic legal approach to remove court judgements that may be impacting your credit profile and financial opportunities.
                     </p>
                     <a href="/services.php" class="btn btn-outline" data-testid="button-learn-more-judgement-removal">
-                        Learn More →
+                        Learn More <svg class="icon icon-arrow-right" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-left: .25rem;"><use href="/icons.svg#arrow-right"></use></svg>
                     </a>
                 </div>
 
                 <div class="card" data-testid="service-card-trace-alert-removal">
-                    <div class="card-icon"><i class="fas fa-search" style="font-size: 2rem; color: #17a2b8;"></i></div>
+                    <div class="card-icon"><svg class="icon icon-search" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#search"></use></svg></div>
                     <h3 data-testid="service-title-trace-alert-removal">Trace Alert Removal</h3>
                     <p data-testid="service-description-trace-alert-removal">
                         Professional assistance in removing trace alerts that may be preventing you from accessing credit and financial services.
                     </p>
                     <a href="/services.php" class="btn btn-outline" data-testid="button-learn-more-trace-alert-removal">
-                        Learn More →
+                        Learn More <svg class="icon icon-arrow-right" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-left: .25rem;"><use href="/icons.svg#arrow-right"></use></svg>
                     </a>
                 </div>
 
                 <div class="card" data-testid="service-card-garnishee-order-removal">
-                    <div class="card-icon"><i class="fas fa-money-bill-wave" style="font-size: 2rem; color: #27ae60;"></i></div>
+                    <div class="card-icon"><svg class="icon icon-banknote" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#banknote"></use></svg></div>
                     <h3 data-testid="service-title-garnishee-order-removal">Garnishee Order Removal</h3>
                     <p data-testid="service-description-garnishee-order-removal">
                         Legal representation to remove garnishee orders, helping you regain control of your salary and financial resources.
                     </p>
                     <a href="/services.php" class="btn btn-outline" data-testid="button-learn-more-garnishee-order-removal">
-                        Learn More →
+                        Learn More <svg class="icon icon-arrow-right" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-left: .25rem;"><use href="/icons.svg#arrow-right"></use></svg>
                     </a>
                 </div>
             </div>
@@ -163,7 +163,7 @@ include '../includes/header.php';
                 Don't let debt control your life. Contact Nova Debt Counselling today for a confidential consultation and start your journey to financial freedom.
             </p>
             <p style="font-size: 1.125rem; margin-bottom: 2rem; max-width: 700px; margin-left: auto; margin-right: auto;">
-                Still Have Some Questions Left? Call Nova Debt Counselling for a Free Consultation on <strong>071 802 2762</strong>
+                Still Have Some Questions Left? Call Nova Debt Counselling for a Free Consultation on <strong>031 0241 790 or 071 802 2762</strong>
             </p>
             <div class="hero-buttons">
                 <a href="/contact.php" class="btn btn-secondary" data-testid="button-contact-now">

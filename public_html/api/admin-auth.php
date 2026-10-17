@@ -1,11 +1,9 @@
 <?php
-/**
- * Admin Authentication API Endpoint
- * For admin login to the chat dashboard
- */
-session_start();
+/** Role-aware authentication for Nova chat staff. */
+require_once __DIR__ . '/../../includes/chat-auth.php';
+nova_chat_start_session();
 
-header('Content-Type: application/json');
+header('Content-Type: application/json; charset=utf-8');
 header('Access-Control-Allow-Origin: ' . (isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : 'localhost'));
 header('Access-Control-Allow-Methods: POST, OPTIONS');
 header('Access-Control-Allow-Headers: Content-Type');
@@ -13,182 +11,160 @@ header('X-Content-Type-Options: nosniff');
 header('X-Frame-Options: DENY');
 header('X-XSS-Protection: 1; mode=block');
 
-// Handle preflight OPTIONS request
-if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-    http_response_code(200);
-    exit;
-}
-
-// Only allow POST requests
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    http_response_code(405);
-    echo json_encode(['error' => 'Method not allowed']);
-    exit;
-}
-
-function sendResponse($success, $data = null, $message = '') {
+function sendResponse($success, $data = null, $message = '')
+{
     $response = ['success' => $success];
-    if ($data !== null) {
-        $response['data'] = $data;
-    }
-    if ($message) {
-        $response['message'] = $message;
-    }
+    if ($data !== null) $response['data'] = $data;
+    if ($message !== '') $response['message'] = $message;
     echo json_encode($response);
     exit;
 }
 
-// Rate limiting for login attempts
-$clientIP = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-$secureStorageDir = '../../secure_storage';
-$loginAttemptsFile = $secureStorageDir . '/login_attempts.json';
-$currentTime = time();
-
-// Ensure secure storage directory exists
-if (!is_dir($secureStorageDir)) {
-    mkdir($secureStorageDir, 0750, true);
-    file_put_contents($secureStorageDir . '/.htaccess', "Order deny,allow\nDeny from all");
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(200);
+    exit;
+}
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+    http_response_code(405);
+    sendResponse(false, null, 'Method not allowed');
 }
 
-// SECURITY FIX: Add file locking for login attempts
-$loginLockFile = $secureStorageDir . '/login.lock';
-$loginLockHandle = fopen($loginLockFile, 'w');
-if (!flock($loginLockHandle, LOCK_EX)) {
-    fclose($loginLockHandle);
+$secureStorageDir = nova_chat_storage_dir();
+$loginLockHandle = fopen($secureStorageDir . '/login.lock', 'c+');
+if ($loginLockHandle === false || !flock($loginLockHandle, LOCK_EX)) {
+    if (is_resource($loginLockHandle)) fclose($loginLockHandle);
+    http_response_code(503);
     sendResponse(false, null, 'System busy, please try again');
 }
 
-// Check login attempts (max 5 attempts per 15 minutes)
-$loginAttempts = [];
-if (file_exists($loginAttemptsFile)) {
-    $content = file_get_contents($loginAttemptsFile);
-    if ($content) {
-        $loginAttempts = json_decode($content, true) ?: [];
-    }
-}
-
-// Clean old attempts (older than 15 minutes)
-$loginAttempts = array_filter($loginAttempts, function($timestamp) use ($currentTime) {
-    return ($currentTime - $timestamp) < 900; // 15 minutes
-});
-
-// Check current IP attempt count
-$ipAttempts = array_filter($loginAttempts, function($timestamp, $ip) use ($clientIP) {
-    return strpos($ip, $clientIP) === 0;
-}, ARRAY_FILTER_USE_BOTH);
-
-if (count($ipAttempts) >= 5) {
-    flock($loginLockHandle, LOCK_UN);
-    fclose($loginLockHandle);
-    http_response_code(429);
-    sendResponse(false, null, 'Too many login attempts. Please try again in 15 minutes.');
-}
-
 try {
-    // Get JSON input
-    $input = json_decode(file_get_contents('php://input'), true);
-    
-    if (!$input) {
+    $currentTime = time();
+    $clientIP = (string)($_SERVER['REMOTE_ADDR'] ?? 'unknown');
+    $loginAttemptsFile = $secureStorageDir . '/login_attempts.json';
+    $loginAttempts = [];
+    if (is_file($loginAttemptsFile)) {
+        $decoded = json_decode((string)file_get_contents($loginAttemptsFile), true);
+        if (is_array($decoded)) $loginAttempts = $decoded;
+    }
+    $loginAttempts = array_filter($loginAttempts, static function ($timestamp) use ($currentTime) {
+        return is_numeric($timestamp) && ($currentTime - (int)$timestamp) < 900;
+    });
+    $ipAttempts = array_filter($loginAttempts, static function ($timestamp, $key) use ($clientIP) {
+        return str_starts_with((string)$key, $clientIP . '_');
+    }, ARRAY_FILTER_USE_BOTH);
+    if (count($ipAttempts) >= 5) {
+        flock($loginLockHandle, LOCK_UN);
+        fclose($loginLockHandle);
+        http_response_code(429);
+        sendResponse(false, null, 'Too many login attempts. Please try again in 15 minutes.');
+    }
+
+    $input = json_decode((string)file_get_contents('php://input'), true);
+    if (!is_array($input)) {
+        flock($loginLockHandle, LOCK_UN);
+        fclose($loginLockHandle);
+        http_response_code(400);
         sendResponse(false, null, 'Invalid JSON');
     }
-    
-    // SECURITY FIX: Sanitize inputs
-    $username = htmlspecialchars(trim($input['username'] ?? ''), ENT_QUOTES, 'UTF-8');
-    $password = trim($input['password'] ?? '');
-    
-    if (empty($username) || empty($password)) {
+    $username = trim((string)($input['username'] ?? ''));
+    $password = (string)($input['password'] ?? '');
+    if (!preg_match('/^[A-Za-z0-9._-]{3,32}$/', $username) || $password === '') {
         flock($loginLockHandle, LOCK_UN);
         fclose($loginLockHandle);
-        sendResponse(false, null, 'Username and password are required');
+        http_response_code(400);
+        sendResponse(false, null, 'Valid username and password are required');
     }
-    
-    // SECURITY FIX: Use properly hashed passwords instead of plaintext
-    // Generated using password_hash('password', PASSWORD_DEFAULT)
-    $validCredentials = [
-        'admin' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // nova2024!
-        'support' => '$2y$10$wgHJPBV8EZzgPT7XYF4UhOQKQHWr7Nv8QhDKZMKXZJb4LlmYKxF2W', // support123  
-        'nova' => '$2y$10$4e7IzDYXhpQ6vWFKjQzEb.BSLRxELGh5c9OdIU.xKsGPnFOa8e7.a' // debtfree2024
+
+    // One-time migration seed. Subsequent account changes live in private JSON storage.
+    $seedAccounts = [
+        'admin' => [
+            'username' => 'admin', 'displayName' => 'Administrator', 'role' => 'admin', 'active' => true,
+            'passwordHash' => '$2y$10$t3QKoHP3nEcOMQ9i4uJO8O9VGIoSkrLzdKzQdGvJ4ct3DY2KT32GW', 'createdAt' => date('c'),
+        ],
+        'support' => [
+            'username' => 'support', 'displayName' => 'Support Agent', 'role' => 'agent', 'active' => true,
+            'passwordHash' => '$2y$10$wgHJPBV8EZzgPT7XYF4UhOQKQHWr7Nv8QhDKZMKXZJb4LlmYKxF2W', 'createdAt' => date('c'),
+        ],
+        'nova' => [
+            'username' => 'nova', 'displayName' => 'Nova Agent', 'role' => 'agent', 'active' => true,
+            'passwordHash' => '$2y$10$4e7IzDYXhpQ6vWFKjQzEb.BSLRxELGh5c9OdIU.xKsGPnFOa8e7.a', 'createdAt' => date('c'),
+        ],
     ];
-    
-    $isValidLogin = false;
-    if (isset($validCredentials[$username]) && password_verify($password, $validCredentials[$username])) {
-        $isValidLogin = true;
+    if (!is_file($secureStorageDir . '/chat-users.json')) {
+        nova_chat_json_transaction('chat-users.json', [], static function (&$users) use ($seedAccounts) {
+            if (!$users) $users = $seedAccounts;
+            return null;
+        });
     }
-    
-    if (!$isValidLogin) {
-        // Record failed attempt with file locking
+    $users = nova_chat_json_read('chat-users.json', $seedAccounts);
+    $account = $users[$username] ?? null;
+    $valid = is_array($account)
+        && ($account['active'] ?? false) === true
+        && is_string($account['passwordHash'] ?? null)
+        && password_verify($password, $account['passwordHash']);
+
+    if (!$valid) {
         $loginAttempts[$clientIP . '_' . $currentTime] = $currentTime;
-        file_put_contents($loginAttemptsFile, json_encode($loginAttempts));
+        file_put_contents($loginAttemptsFile, json_encode($loginAttempts), LOCK_EX);
         flock($loginLockHandle, LOCK_UN);
         fclose($loginLockHandle);
-        
+        http_response_code(401);
         sendResponse(false, null, 'Invalid username or password');
     }
-    
-    // SECURITY FIX: Secure session management
-    // Regenerate session ID to prevent session fixation
+
     session_regenerate_id(true);
-    
-    // Successful login  
+    $role = ($account['role'] ?? '') === 'admin' ? 'admin' : 'agent';
+    $displayName = trim((string)($account['displayName'] ?? $username));
+    $staffClientId = 'staff_' . $username . '_' . bin2hex(random_bytes(8));
     $_SESSION['admin_logged_in'] = true;
     $_SESSION['admin_username'] = $username;
+    $_SESSION['admin_role'] = $role;
+    $_SESSION['admin_display_name'] = $displayName;
     $_SESSION['admin_login_time'] = $currentTime;
-    $_SESSION['admin_ip'] = $clientIP; // Track IP for additional security
-    
-    // Generate admin client ID
-    $adminClientId = 'admin_' . $username . '_' . uniqid();
-    $_SESSION['admin_client_id'] = $adminClientId;
-    
-    // SECURITY FIX: Add file locking for online clients
-    $onlineFile = $secureStorageDir . '/online-clients.json';
-    $onlineLockFile = $secureStorageDir . '/online.lock';
-    $onlineLockHandle = fopen($onlineLockFile, 'w');
-    
-    if (flock($onlineLockHandle, LOCK_EX)) {
+    $_SESSION['admin_ip'] = $clientIP;
+    $_SESSION['admin_client_id'] = $staffClientId;
+
+    $onlineLock = fopen($secureStorageDir . '/online.lock', 'c+');
+    if (is_resource($onlineLock) && flock($onlineLock, LOCK_EX)) {
+        $onlineFile = $secureStorageDir . '/online-clients.json';
         $onlineClients = [];
-        
-        if (file_exists($onlineFile)) {
-            $content = file_get_contents($onlineFile);
-            if ($content) {
-                $onlineClients = json_decode($content, true) ?: [];
-            }
+        if (is_file($onlineFile)) {
+            $decoded = json_decode((string)file_get_contents($onlineFile), true);
+            if (is_array($decoded)) $onlineClients = $decoded;
         }
-        
-        $onlineClients[$adminClientId] = [
+        $onlineClients[$staffClientId] = [
             'lastSeen' => $currentTime,
             'isAdmin' => true,
-            'username' => $username
+            'role' => $role,
+            'username' => $username,
+            'displayName' => $displayName,
         ];
-        
-        file_put_contents($onlineFile, json_encode($onlineClients));
-        flock($onlineLockHandle, LOCK_UN);
+        file_put_contents($onlineFile, json_encode($onlineClients), LOCK_EX);
+        flock($onlineLock, LOCK_UN);
     }
-    fclose($onlineLockHandle);
-    
-    // Clear login attempts for this IP (already have login lock)
-    $loginAttempts = array_filter($loginAttempts, function($timestamp, $ip) use ($clientIP) {
-        return strpos($ip, $clientIP) !== 0;
+    if (is_resource($onlineLock)) fclose($onlineLock);
+
+    $loginAttempts = array_filter($loginAttempts, static function ($timestamp, $key) use ($clientIP) {
+        return !str_starts_with((string)$key, $clientIP . '_');
     }, ARRAY_FILTER_USE_BOTH);
-    file_put_contents($loginAttemptsFile, json_encode($loginAttempts));
-    
-    // Release login lock
+    file_put_contents($loginAttemptsFile, json_encode($loginAttempts), LOCK_EX);
     flock($loginLockHandle, LOCK_UN);
     fclose($loginLockHandle);
-    
+
     sendResponse(true, [
-        'adminClientId' => $adminClientId,
+        'adminClientId' => $staffClientId,
         'username' => $username,
+        'displayName' => $displayName,
+        'role' => $role,
         'loginTime' => $currentTime,
-        'sessionValid' => true
+        'sessionValid' => true,
     ], 'Login successful');
-    
-} catch (Exception $e) {
-    // SECURITY FIX: Ensure locks are released on error
-    if (isset($loginLockHandle) && is_resource($loginLockHandle)) {
+} catch (Throwable $error) {
+    if (is_resource($loginLockHandle)) {
         flock($loginLockHandle, LOCK_UN);
         fclose($loginLockHandle);
     }
-    error_log('Admin auth error: ' . $e->getMessage());
+    error_log('Staff authentication error: ' . $error->getMessage());
+    http_response_code(500);
     sendResponse(false, null, 'Internal server error');
 }
-?>

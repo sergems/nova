@@ -3,7 +3,7 @@ require_once '../includes/seo.php';
 include '../includes/header.php'; 
 ?>
 
-<main data-page="about">
+<main id="main-content" data-page="about">
     <!-- Hero Section -->
     <section class="hero">
         <div class="container text-center">
@@ -30,7 +30,7 @@ include '../includes/header.php';
                 <div>
                     <div style="margin-bottom: 3rem;">
                         <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                            <i class="fas fa-bullseye" style="font-size: 2rem; margin-right: 0.75rem; color: #e74c3c;"></i>
+                            <svg class="icon icon-target" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#target"></use></svg>
                             <h2>Our Vision</h2>
                         </div>
                         <p style="font-size: 1.125rem; line-height: 1.7;">
@@ -40,7 +40,7 @@ include '../includes/header.php';
 
                     <div>
                         <div style="display: flex; align-items: center; margin-bottom: 1rem;">
-                            <i class="fas fa-eye" style="font-size: 2rem; margin-right: 0.75rem; color: #3498db;"></i>
+                            <svg class="icon icon-eye" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#eye"></use></svg>
                             <h2>Our Mission</h2>
                         </div>
                         <p style="font-size: 1.125rem; line-height: 1.7;">
@@ -63,7 +63,7 @@ include '../includes/header.php';
             <div class="grid grid-4">
                 <div class="text-center" data-testid="value-0">
                     <div style="width: 5rem; height: 5rem; background-color: rgba(75, 38, 97, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">
-                        <i class="fas fa-heart" style="color: #e74c3c;"></i>
+                        <svg class="icon icon-heart" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#heart"></use></svg>
                     </div>
                     <h3>Dignity & Respect</h3>
                     <p>We treat every client with dignity and respect, understanding that debt issues are personal and sensitive matters.</p>
@@ -71,7 +71,7 @@ include '../includes/header.php';
 
                 <div class="text-center" data-testid="value-1">
                     <div style="width: 5rem; height: 5rem; background-color: rgba(75, 38, 97, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">
-                        <i class="fas fa-trophy" style="color: #f39c12;"></i>
+                        <svg class="icon icon-trophy" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#trophy"></use></svg>
                     </div>
                     <h3>Professional Excellence</h3>
                     <p>Our team maintains the highest standards of professional service and ethical conduct in all client interactions.</p>
@@ -79,7 +79,7 @@ include '../includes/header.php';
 
                 <div class="text-center" data-testid="value-2">
                     <div style="width: 5rem; height: 5rem; background-color: rgba(75, 38, 97, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">
-                        <i class="fas fa-users" style="color: #17a2b8;"></i>
+                        <svg class="icon icon-users" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#users"></use></svg>
                     </div>
                     <h3>Client-Centered Approach</h3>
                     <p>Every solution is tailored to the individual client's needs, circumstances, and financial goals.</p>
@@ -87,7 +87,7 @@ include '../includes/header.php';
 
                 <div class="text-center" data-testid="value-3">
                     <div style="width: 5rem; height: 5rem; background-color: rgba(75, 38, 97, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem; font-size: 2rem;">
-                        <i class="fas fa-chart-line" style="color: #27ae60;"></i>
+                        <svg class="icon icon-chart-no-axes-combined" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#chart-no-axes-combined"></use></svg>
                     </div>
                     <h3>Sustainable Results</h3>
                     <p>We focus on long-term financial health and sustainable debt solutions that benefit our clients' futures.</p>
@@ -158,27 +158,27 @@ include '../includes/header.php';
                 <div>
                     <div>
                         <div style="display: flex; align-items: flex-start; margin-bottom: 1rem;" data-testid="differentiator-0">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 1.2rem; margin-top: 0.125rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem; margin-top: 0.125rem;"><use href="/icons.svg#check"></use></svg>
                             <p style="font-size: 1.125rem;">Optimized counselling strategy and timing of action</p>
                         </div>
                         <div style="display: flex; align-items: flex-start; margin-bottom: 1rem;" data-testid="differentiator-1">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 1.2rem; margin-top: 0.125rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem; margin-top: 0.125rem;"><use href="/icons.svg#check"></use></svg>
                             <p style="font-size: 1.125rem;">Advanced technology and tracing abilities</p>
                         </div>
                         <div style="display: flex; align-items: flex-start; margin-bottom: 1rem;" data-testid="differentiator-2">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 1.2rem; margin-top: 0.125rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem; margin-top: 0.125rem;"><use href="/icons.svg#check"></use></svg>
                             <p style="font-size: 1.125rem;">Qualified and trained call centre staff</p>
                         </div>
                         <div style="display: flex; align-items: flex-start; margin-bottom: 1rem;" data-testid="differentiator-3">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 1.2rem; margin-top: 0.125rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem; margin-top: 0.125rem;"><use href="/icons.svg#check"></use></svg>
                             <p style="font-size: 1.125rem;">Well qualified and experienced management team</p>
                         </div>
                         <div style="display: flex; align-items: flex-start; margin-bottom: 1rem;" data-testid="differentiator-4">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 1.2rem; margin-top: 0.125rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem; margin-top: 0.125rem;"><use href="/icons.svg#check"></use></svg>
                             <p style="font-size: 1.125rem;">Industry-specific training and expertise</p>
                         </div>
                         <div style="display: flex; align-items: flex-start; margin-bottom: 1rem;" data-testid="differentiator-5">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 1.2rem; margin-top: 0.125rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem; margin-top: 0.125rem;"><use href="/icons.svg#check"></use></svg>
                             <p style="font-size: 1.125rem;">Comprehensive end-to-end debt counselling services</p>
                         </div>
                     </div>

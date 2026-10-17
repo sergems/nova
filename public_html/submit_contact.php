@@ -130,15 +130,19 @@ function checkRateLimit() {
 }
 
 /**
- * Send email via SendGrid API with automatic fallback to sandbox mode
- * This ensures demo functionality works while sender verification is pending
+ * Send email via SendGrid API. Success is returned only when the provider accepts it.
  */
 function sendEmailViaSendGrid($formData) {
     $apiKey = getenv('SENDGRID_API_KEY');
     
     if (!$apiKey) {
         error_log('SendGrid API key not configured');
-        return ['success' => false, 'mode' => 'no_api_key'];
+        return ['success' => false, 'mode' => 'not_configured'];
+    }
+
+    if (!function_exists('curl_init')) {
+        error_log('PHP cURL extension is required to send contact form email');
+        return ['success' => false, 'mode' => 'transport_unavailable'];
     }
     
     // Map service values to readable names
@@ -168,7 +172,7 @@ function sendEmailViaSendGrid($formData) {
             ]
         ],
         'from' => [
-            'email' => 'admin@ndcl.co.za',
+            'email' => getenv('SENDGRID_FROM_EMAIL') ?: 'admin@ndcl.co.za',
             'name' => 'Nova Debt Counselling Website'
         ],
         'reply_to' => [
@@ -187,39 +191,15 @@ function sendEmailViaSendGrid($formData) {
         ]
     ];
     
-    // First attempt: try normal send
+    // SendGrid returns a 2xx response only after accepting the email for delivery.
     $result = attemptSendGridEmail($emailData, $apiKey, false);
     
     if ($result['success']) {
         return ['success' => true, 'mode' => 'live'];
     }
     
-    // Check if it's a sender verification error
-    $response = json_decode($result['response'], true);
-    if ($result['httpCode'] >= 400 && $result['httpCode'] < 500 && 
-        isset($response['errors']) && 
-        strpos(json_encode($response['errors']), 'verified Sender Identity') !== false) {
-        
-        error_log('SendGrid sender verification issue, attempting sandbox mode');
-        
-        // Add sandbox mode for demo purposes
-        $emailData['mail_settings'] = [
-            'sandbox_mode' => [
-                'enable' => true
-            ]
-        ];
-        
-        // Second attempt: try with sandbox mode
-        $sandboxResult = attemptSendGridEmail($emailData, $apiKey, true);
-        
-        if ($sandboxResult['success']) {
-            return ['success' => true, 'mode' => 'sandbox'];
-        }
-    }
-    
-    // Both attempts failed, but we'll still return success for demo purposes
-    error_log('SendGrid email failed even with sandbox mode. Response: ' . $result['response']);
-    return ['success' => true, 'mode' => 'local_fallback'];
+    error_log('SendGrid email was not accepted (HTTP ' . (int) $result['httpCode'] . '): ' . substr((string) $result['response'], 0, 1000));
+    return ['success' => false, 'mode' => 'send_failed'];
 }
 
 /**
@@ -238,14 +218,16 @@ function attemptSendGridEmail($emailData, $apiKey, $isSandbox = false) {
     curl_setopt($ch, CURLOPT_TIMEOUT, 30);
     
     $response = curl_exec($ch);
+    $curlError = curl_error($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);
     
     $success = $httpCode >= 200 && $httpCode < 300;
     
     if ($success) {
-        $mode = $isSandbox ? 'sandbox' : 'live';
-        error_log("SendGrid email sent successfully in $mode mode");
+        error_log('SendGrid accepted contact form email for delivery');
+    } elseif ($curlError !== '') {
+        $response = $curlError;
     }
     
     return [
@@ -427,13 +409,10 @@ try {
         error_log('Failed to log submission: ' . $e->getMessage());
     }
     
-    // Always proceed with success response for demo purposes
-    // In production, uncomment the check below once sender verification is configured
-    /*
     if (!$emailResult['success']) {
-        sendResponse(false, 'Failed to send email notification. Please try again or contact us directly.');
+        http_response_code(503);
+        sendResponse(false, 'We could not send your message right now. Please try again or email admin@ndcl.co.za directly.');
     }
-    */
     
     // Update rate limiting
     $_SESSION['last_submission'] = time();

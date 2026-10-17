@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (mobileToggle && navMenu) {
         mobileToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
+            const isExpanded = navMenu.classList.toggle('active');
+            mobileToggle.setAttribute('aria-expanded', String(isExpanded));
             
             // Animate hamburger menu
             const hamburgers = mobileToggle.querySelectorAll('.hamburger');
@@ -27,6 +28,7 @@ document.addEventListener('DOMContentLoaded', function() {
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navMenu.classList.remove('active');
+                mobileToggle.setAttribute('aria-expanded', 'false');
                 const hamburgers = mobileToggle.querySelectorAll('.hamburger');
                 hamburgers.forEach(line => {
                     line.style.transform = 'none';

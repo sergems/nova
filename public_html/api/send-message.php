@@ -38,7 +38,7 @@ function sendResponse($success, $data = null, $message = '') {
 
 // Basic rate limiting: 10 messages per minute per IP
 $clientIP = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-$secureStorageDir = '../../secure_storage';
+$secureStorageDir = __DIR__ . '/../../secure_storage';
 $rateLimitFile = $secureStorageDir . '/rate_limit_send.json';
 $currentTime = time();
 
@@ -104,12 +104,17 @@ try {
         }
     }
     
-    // SECURITY FIX: Sanitize inputs to prevent XSS
-    $clientId = trim($input['clientId']);
-    $message = htmlspecialchars(trim($input['message']), ENT_QUOTES, 'UTF-8');
-    $userName = htmlspecialchars(trim($input['userName'] ?? 'Anonymous'), ENT_QUOTES, 'UTF-8');
-    $isFromAdmin = filter_var($input['isFromAdmin'] ?? false, FILTER_VALIDATE_BOOLEAN);
-    $targetClientId = trim($input['targetClientId'] ?? '');
+    // Store plain text; both chat interfaces render it via textContent.
+    $clientId = trim((string)$input['clientId']);
+    $message = trim((string)$input['message']);
+    $userName = substr(trim((string)($input['userName'] ?? 'Visitor')), 0, 80);
+    // Admin messages can only be created by the authenticated admin-response endpoint.
+    $isFromAdmin = false;
+    $targetClientId = '';
+
+    if (!preg_match('/^[A-Za-z0-9_-]{1,80}$/', $clientId)) {
+        sendResponse(false, null, 'Invalid client ID');
+    }
     
     // Validate message length
     if (strlen($message) < 1) {

@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 // Basic rate limiting: 10 messages per minute per IP
 $clientIP = $_SERVER['REMOTE_ADDR'] ?? 'unknown';
-$secureStorageDir = '../../secure_storage';
+$secureStorageDir = __DIR__ . '/../../secure_storage';
 $rateLimitFile = $secureStorageDir . '/rate_limit.json';
 $currentTime = time();
 $rateLimitData = [];

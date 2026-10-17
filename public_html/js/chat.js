@@ -7,6 +7,7 @@ class LiveChat {
         this.statusInterval = null;
         this.messages = [];
         this.lastMessageTime = '';
+        this.seenMessages = new Set();
         this.pollingDelay = 2000; // Poll every 2 seconds
         this.statusDelay = 5000; // Check status every 5 seconds
         
@@ -92,7 +93,7 @@ class LiveChat {
                             </div>
                             <div class="chat-info">
                                 <h4 style="color: white;">Nova Support</h4>
-                                <p id="chat-status">Connecting...</p>
+                                <p id="chat-status" aria-live="polite">Checking team availability...</p>
                             </div>
                         </div>
                         <button id="chat-close" class="chat-close" data-testid="chat-close">
@@ -107,8 +108,8 @@ class LiveChat {
                     <div class="name-input-container" id="name-input-container" data-testid="name-input-container">
                         <div class="name-input-form">
                             <div class="name-input-header">
-                                <h4>Welcome to Nova Support!</h4>
-                                <p>Please enter your name to start chatting:</p>
+                                <h4>Chat directly with Nova</h4>
+                                <p>Enter your name to start a direct conversation with our team.</p>
                             </div>
                             <div class="name-input-wrapper">
                                 <input type="text" id="user-name-input" class="user-name-input" placeholder="Your name..." data-testid="user-name-input" maxlength="50">
@@ -120,7 +121,7 @@ class LiveChat {
                     <div class="chat-messages" id="chat-messages" data-testid="chat-messages" style="display: none;">
                         <div class="message agent-message">
                             <div class="message-content">
-                                <p>👋 Hi <span id="user-greeting-name">there</span>! I'm here to help you with your debt counselling needs. How can I assist you today?</p>
+                                <p>Hi <span id="user-greeting-name">there</span>. This is a direct chat with Nova Support. Send a message below and a team member will reply here.</p>
                             </div>
                             <div class="message-time">${this.getCurrentTime()}</div>
                         </div>
@@ -128,7 +129,7 @@ class LiveChat {
 
                     <div class="chat-input-container" id="chat-input-container" style="display: none;">
                         <div class="chat-input-wrapper">
-                            <input type="text" id="chat-input" class="chat-input" placeholder="Type your message..." data-testid="chat-input">
+                            <input type="text" id="chat-input" class="chat-input" placeholder="Write your message..." data-testid="chat-input" maxlength="1000" autocomplete="off">
                             <button id="chat-send" class="chat-send-btn" data-testid="chat-send">
                                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <line x1="22" y1="2" x2="11" y2="13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -137,6 +138,7 @@ class LiveChat {
                             </button>
                         </div>
                     </div>
+                    <div class="chat-whatsapp-fallback">Prefer WhatsApp? <a href="https://wa.me/27718022762" target="_blank" rel="noopener noreferrer">Message Nova directly</a></div>
                 </div>
             </div>
         `;
@@ -236,24 +238,30 @@ class LiveChat {
 
     handleNewMessages(messages) {
         messages.forEach(message => {
-            if (message.isFromAdmin) {
-                this.addMessage(message.message, 'agent');
-                this.showNotificationIfClosed();
-            } else if (message.clientId !== this.userId) {
-                // Message from another user (shouldn't happen for privacy, but handle gracefully)
-                // Skip displaying other user messages
+            const isAdminReply = Boolean(message.isFromAdmin) && message.targetClientId === this.userId;
+            const isOwnMessage = !message.isFromAdmin && message.clientId === this.userId;
+            const messageKey = message.id || `${message.timestamp || ''}|${message.clientId || ''}|${message.isFromAdmin ? 'admin' : 'visitor'}|${message.message || ''}`;
+
+            if ((isAdminReply || isOwnMessage) && !this.seenMessages.has(messageKey)) {
+                this.seenMessages.add(messageKey);
+                this.addMessage(message.message, isAdminReply ? 'agent' : 'user', message.timestamp);
+                if (isAdminReply) this.showNotificationIfClosed();
             }
-            
-            // Update last message time
-            if (message.timestamp) {
+
+            if (message.timestamp && (!this.lastMessageTime || Date.parse(message.timestamp) > Date.parse(this.lastMessageTime))) {
                 this.lastMessageTime = message.timestamp;
             }
         });
     }
 
     updateOnlineStatus(status) {
-        const statusText = status.supportAvailable ? 'Adviser Available' : 'Online';
-        this.updateStatus(statusText, status.supportAvailable);
+        const supportAvailable = typeof status.supportAvailable === 'boolean'
+            ? status.supportAvailable
+            : (Number(status.adminCount || 0) > 0 || status.isOnline === true);
+        const statusText = supportAvailable
+            ? 'Team online — send a message'
+            : 'Team offline — leave a message';
+        this.updateStatus(statusText, supportAvailable);
         this.isOnline = status.isOnline;
     }
 
@@ -370,15 +378,14 @@ class LiveChat {
 
     async sendMessage() {
         const input = document.getElementById('chat-input');
+        const sendButton = document.getElementById('chat-send');
         const message = input.value.trim();
         
-        if (!message) return;
+        if (!message || !this.hasEnteredName) return;
 
-        // Disable input temporarily to prevent double sending
+        // Keep one request in flight so the visitor cannot accidentally duplicate a message.
         input.disabled = true;
-        
-        // Add message to chat immediately
-        this.addMessage(message, 'user');
+        sendButton.disabled = true;
         
         try {
             const response = await fetch('/api/send-message.php', {
@@ -393,30 +400,25 @@ class LiveChat {
                     isFromAdmin: false
                 })
             });
-
-            if (response.ok) {
-                const data = await response.json();
-                if (data.success) {
-                    // Message sent successfully
-                    input.value = '';
-                } else {
-                    // Show error message
-                    this.addMessage('⚠️ ' + (data.message || 'Failed to send message'), 'system');
-                }
-            } else {
-                this.addMessage('⚠️ Failed to send message. Please try again.', 'system');
-            }
+            const data = await response.json();
+            if (!response.ok || !data.success) throw new Error(data.message || 'Message could not be sent. Please try again.');
+            input.value = '';
+            const savedMessage = data.data || {};
+            const messageKey = savedMessage.messageId || `${savedMessage.timestamp || ''}|${this.userId}|visitor|${message}`;
+            this.addMessage(message, 'user', savedMessage.timestamp, messageKey);
         } catch (error) {
-            this.addMessage('⚠️ Connection error. Message may not have been sent.', 'system');
+            this.addMessage(`Message not sent: ${error.message || 'Connection error. Please try again.'}`, 'system');
+        } finally {
+            input.disabled = false;
+            sendButton.disabled = false;
+            input.focus();
         }
-
-        // Re-enable input
-        input.disabled = false;
-        input.focus();
     }
 
-    addMessage(content, type = 'user') {
+    addMessage(content, type = 'user', timestamp = null, messageId = null) {
         const messagesContainer = document.getElementById('chat-messages');
+        if (messageId && this.seenMessages.has(messageId)) return;
+        if (messageId) this.seenMessages.add(messageId);
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${type}-message`;
         
@@ -430,7 +432,7 @@ class LiveChat {
         
         const messageTimeDiv = document.createElement('div');
         messageTimeDiv.className = 'message-time';
-        messageTimeDiv.textContent = this.getCurrentTime();
+        messageTimeDiv.textContent = timestamp ? new Date(timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : this.getCurrentTime();
         
         messageDiv.appendChild(messageContentDiv);
         messageDiv.appendChild(messageTimeDiv);

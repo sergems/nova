@@ -3,7 +3,7 @@ require_once '../includes/seo.php';
 include '../includes/header.php'; 
 ?>
 
-<main data-page="services">
+<main id="main-content" data-page="services">
     <!-- Hero Section -->
     <section class="hero">
         <div class="container text-center">
@@ -29,75 +29,75 @@ include '../includes/header.php';
 
             <div class="services-grid">
                 <div class="card" data-testid="detailed-service-debt-review-cancellation">
-                    <div class="card-icon"><i class="fas fa-clipboard-list" style="font-size: 2rem; color: #3498db;"></i></div>
+                    <div class="card-icon"><svg class="icon icon-clipboard-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#clipboard-check"></use></svg></div>
                     <h3>Debt Review Cancellation</h3>
                     <p>Professional assistance to cancel your debt review when circumstances change, ensuring a smooth transition back to normal credit standing. Our team handles all paperwork and legal requirements.</p>
                     <div style="margin-top: 1.5rem;">
                         <h4 style="margin-bottom: 1rem;">Key Benefits:</h4>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Legal compliance with National Credit Act</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Complete paperwork handling</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Credit record restoration</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Expert legal guidance</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="card" data-testid="detailed-service-admin-order-cancellation">
-                    <div class="card-icon"><i class="fas fa-file-alt" style="font-size: 2rem; color: #27ae60;"></i></div>
+                    <div class="card-icon"><svg class="icon icon-file-text" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#file-text"></use></svg></div>
                     <h3>Admin Order Cancellation</h3>
                     <p>Expert guidance through the legal process of cancelling administration orders that may no longer serve your best interests. We ensure proper court procedures are followed.</p>
                     <div style="margin-top: 1.5rem;">
                         <h4 style="margin-bottom: 1rem;">Key Benefits:</h4>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Court application preparation</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Legal representation</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Document verification</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Follow-up services</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="card" data-testid="detailed-service-prescribed-debt-removal">
-                    <div class="card-icon"><i class="fas fa-broom" style="font-size: 2rem; color: #9b59b6;"></i></div>
+                    <div class="card-icon"><svg class="icon icon-eraser" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#eraser"></use></svg></div>
                     <h3>Prescribed Debt Removal</h3>
                     <p>Legal removal of prescribed debts from your credit record, helping you start fresh with a clean financial slate. We identify and remove time-barred debts effectively.</p>
                     <div style="margin-top: 1.5rem;">
                         <h4 style="margin-bottom: 1rem;">Key Benefits:</h4>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Credit record analysis</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Prescription verification</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Credit bureau liaison</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Permanent removal</span>
                         </div>
                     </div>
@@ -110,69 +110,69 @@ include '../includes/header.php';
                     <div style="margin-top: 1.5rem;">
                         <h4 style="margin-bottom: 1rem;">Key Benefits:</h4>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Legal assessment</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Court applications</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Judgment satisfaction</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Credit restoration</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="card" data-testid="detailed-service-trace-alert-removal">
-                    <div class="card-icon"><i class="fas fa-search" style="font-size: 2rem; color: #17a2b8;"></i></div>
+                    <div class="card-icon"><svg class="icon icon-search" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#search"></use></svg></div>
                     <h3>Trace Alert Removal</h3>
                     <p>Professional assistance in removing trace alerts that may be preventing you from accessing credit and financial services. We work directly with credit bureaus.</p>
                     <div style="margin-top: 1.5rem;">
                         <h4 style="margin-bottom: 1rem;">Key Benefits:</h4>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Credit bureau communication</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Documentation verification</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Alert removal process</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Status monitoring</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="card" data-testid="detailed-service-garnishee-order-removal">
-                    <div class="card-icon"><i class="fas fa-money-bill-wave" style="font-size: 2rem; color: #27ae60;"></i></div>
+                    <div class="card-icon"><svg class="icon icon-banknote" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#banknote"></use></svg></div>
                     <h3>Garnishee Order Removal</h3>
                     <p>Legal representation to remove garnishee orders, helping you regain control of your salary and financial resources. We negotiate with creditors on your behalf.</p>
                     <div style="margin-top: 1.5rem;">
                         <h4 style="margin-bottom: 1rem;">Key Benefits:</h4>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Legal representation</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Creditor negotiation</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Court applications</span>
                         </div>
                         <div style="display: flex; align-items: center; margin-bottom: 0.5rem;">
-                            <i class="fas fa-check" style="color: #27ae60; margin-right: 0.75rem; font-size: 0.9rem;"></i>
+                            <svg class="icon icon-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24" style="margin-right: 0.75rem;"><use href="/icons.svg#check"></use></svg>
                             <span style="font-size: 0.9rem;">Financial planning advice</span>
                         </div>
                     </div>
@@ -234,7 +234,7 @@ include '../includes/header.php';
                     <div style="margin-bottom: 2rem;">
                         <div style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
                             <div style="width: 3rem; height: 3rem; background-color: rgba(75, 38, 97, 0.1); border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; margin-right: 1rem; flex-shrink: 0;">
-                                <i class="fas fa-shield-alt" style="color: #e67e22; font-size: 1.5rem;"></i>
+                                <svg class="icon icon-shield-check" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#shield-check"></use></svg>
                             </div>
                             <div>
                                 <h3 style="margin-bottom: 0.5rem;">Experienced Professionals</h3>
@@ -244,7 +244,7 @@ include '../includes/header.php';
 
                         <div style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
                             <div style="width: 3rem; height: 3rem; background-color: rgba(75, 38, 97, 0.1); border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; margin-right: 1rem; flex-shrink: 0;">
-                                <i class="fas fa-users" style="color: #17a2b8; font-size: 1.5rem;"></i>
+                                <svg class="icon icon-users" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#users"></use></svg>
                             </div>
                             <div>
                                 <h3 style="margin-bottom: 0.5rem;">Dignity-Focused Approach</h3>
@@ -254,7 +254,7 @@ include '../includes/header.php';
 
                         <div style="display: flex; align-items: flex-start; margin-bottom: 1.5rem;">
                             <div style="width: 3rem; height: 3rem; background-color: rgba(75, 38, 97, 0.1); border-radius: var(--border-radius); display: flex; align-items: center; justify-content: center; margin-right: 1rem; flex-shrink: 0;">
-                                <i class="fas fa-clock" style="color: #f39c12; font-size: 1.5rem;"></i>
+                                <svg class="icon icon-clock" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><use href="/icons.svg#clock"></use></svg>
                             </div>
                             <div>
                                 <h3 style="margin-bottom: 0.5rem;">Efficient Service</h3>

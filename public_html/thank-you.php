@@ -3,7 +3,7 @@ require_once '../includes/seo.php';
 include '../includes/header.php'; 
 ?>
 
-<main data-page="thank-you">
+<main id="main-content" data-page="thank-you">
     <!-- Hero Section -->
     <section class="hero">
         <div class="container text-center">
